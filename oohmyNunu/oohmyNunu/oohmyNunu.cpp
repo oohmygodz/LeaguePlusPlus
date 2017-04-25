@@ -12,7 +12,6 @@ IMenu* Drawings;
 IMenu* Killsteal;
 IMenu* JungleSettings;
 
-IMenuOption* ComboQ;
 IMenuOption* ComboW;
 IMenuOption* ComboE;
 IMenuOption* ComboR;
@@ -27,7 +26,6 @@ IMenuOption* DrawW;
 IMenuOption* DrawE;
 IMenuOption* DrawR;
 
-IMenuOption* KSQ;
 IMenuOption* KSE;
 
 
@@ -35,14 +33,13 @@ PluginSetup("oohmyNunu")
 
 void Menu()
 {
-	MainMenu = GPluginSDK->AddMenu("oohmynunu");
+	MainMenu = GPluginSDK->AddMenu("oohmyNunu");
 
 	ComboSettings = MainMenu->AddMenu("Combo");
 	{
-		ComboQ = ComboSettings->CheckBox("Use Q", true);
 		ComboW = ComboSettings->CheckBox("Use W", true);
 		ComboE = ComboSettings->CheckBox("Use E", true);
-		//ComboQ = ComboSettings->CheckBox("Use R", true);
+		//ComboR = ComboSettings->CheckBox("Use R", true);
 	}
 	JungleSettings = MainMenu->AddMenu("Jungle");
 	{
@@ -52,7 +49,6 @@ void Menu()
 	}
 	Killsteal = MainMenu->AddMenu("KS");
 	{
-		KSQ = Killsteal->CheckBox("KS Q", true);
 		KSE = Killsteal->CheckBox("KS E", true);
 	}
 	Drawings = MainMenu->AddMenu("Drawings");
@@ -113,14 +109,6 @@ void KS()
 {
 	for (auto t : GEntityList->GetAllHeros(false, true))
 	{
-		if (Q->IsReady() && KSQ->Enabled())
-		{
-			auto dmg = GHealthPrediction->GetKSDamage(t, kSlotQ, Q->GetDelay(), true);
-			if (t->GetHealth() <= dmg)
-			{
-				Q->CastOnTarget(t);
-			}
-		}
 
 		if (E->IsReady() && KSE->Enabled())
 		{
@@ -140,10 +128,6 @@ PLUGIN_EVENT(void) OnGame()
 	auto t = GTargetSelector->FindTarget(QuickestKill, SpellDamage, 550);
 	if (GOrbwalking->GetOrbwalkingMode() == kModeCombo)
 	{
-		if (Q->IsReady() && ComboQ->Enabled())
-		{
-			Q->CastOnTarget(t);
-		}
 		if (W->IsReady() && ComboW->Enabled() && GetEnemiesInRange(700) >= 3)
 		{
 			W->CastOnPlayer();
@@ -169,7 +153,7 @@ PLUGIN_EVENT(void) OnRender()
 
 		if (W->IsReady() && DrawW->Enabled()) { GRender->DrawOutlinedCircle(GEntityList->Player()->GetPosition(), Vec4(255, 255, 0, 255), W->Range()); }
 
-		if (R->IsReady() && DrawW->Enabled()) { GRender->DrawOutlinedCircle(GEntityList->Player()->GetPosition(), Vec4(255, 255, 0, 255), R->Range()); }
+		if (R->IsReady() && DrawR->Enabled()) { GRender->DrawOutlinedCircle(GEntityList->Player()->GetPosition(), Vec4(255, 255, 0, 255), R->Range()); }
 
 	}
 	else
@@ -189,19 +173,17 @@ PLUGIN_API void OnLoad(IPluginSDK* PluginSDK)
 	PluginSDKSetup(PluginSDK);
 	Menu();
 	Spells();
-
-
 	GEventManager->AddEventHandler(kEventOnGameUpdate, OnGame);
 	GEventManager->AddEventHandler(kEventOnRender, OnRender);
+	GGame->PrintChat("<font color=\"#ff0707\"><b>oohmyNunu loaded</b></font>");
 }
 
 PLUGIN_API void OnUnload()
 {
 	MainMenu->Remove();
-
-
 	GEventManager->RemoveEventHandler(kEventOnGameUpdate, OnGame);;
 	GEventManager->RemoveEventHandler(kEventOnRender, OnRender);
+	GGame->PrintChat("<font color=\"#ff0707\"><b>oohmyNunu unloaded</b></font>");
 
 
 }
