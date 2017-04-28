@@ -1,10 +1,10 @@
 ﻿  oohmyChatSpammer.cpp
-oohmyChatSpammer.cpp(103): warning C4129: '.': unrecognized character escape sequence
-oohmyChatSpammer.cpp(104): warning C4129: '.': unrecognized character escape sequence
-oohmyChatSpammer.cpp(109): warning C4129: ' ': unrecognized character escape sequence
+oohmyChatSpammer.cpp(101): warning C4129: '.': unrecognized character escape sequence
+oohmyChatSpammer.cpp(102): warning C4129: '.': unrecognized character escape sequence
+oohmyChatSpammer.cpp(107): warning C4129: ' ': unrecognized character escape sequence
   PluginSDK.cpp
-     Creating library C:\Users\Joey\documents\visual studio 2017\Projects\oohmyChatSpammer\Release\oohmyChatSpammer.lib and object C:\Users\Joey\documents\visual studio 2017\Projects\oohmyChatSpammer\Release\oohmyChatSpammer.exp
+     Creating library C:\Users\Joey\Documents\Visual Studio 2017\Projects\oohmyChatSpammer\Release\oohmyChatSpammer.lib and object C:\Users\Joey\Documents\Visual Studio 2017\Projects\oohmyChatSpammer\Release\oohmyChatSpammer.exp
   Generating code
-  All 12 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 11 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  oohmyChatSpammer.vcxproj -> C:\Users\Joey\documents\visual studio 2017\Projects\oohmyChatSpammer\Release\oohmyChatSpammer.dll
+  oohmyChatSpammer.vcxproj -> C:\Users\Joey\Documents\Visual Studio 2017\Projects\oohmyChatSpammer\Release\oohmyChatSpammer.dll
