@@ -12,6 +12,7 @@ IMenuOption* Key2;
 IMenuOption* Key3;
 IMenuOption* Key4;
 IMenuOption* Key5;
+IMenuOption* Key6;
 
 void Menu()
 {
@@ -25,6 +26,7 @@ void Menu()
 	Key3 = Settings->AddKey("Refund Your Cheat", 100);
 	Key4 = Settings->AddKey("Middle Finger", 101);
 	Key5 = Settings->AddKey("GG Key", 102);
+	Key6 = Settings->AddKey("Swastika", 103);
 }
 
 void keypress()
@@ -127,6 +129,28 @@ void keypress5()
 	}
 }
 
+void keypress6()
+{
+	if (Enabled->Enabled())
+	{
+		if (GetAsyncKeyState(Key6->GetInteger()))
+		{
+			GGame->Say("/all SIEG HEIL");
+			GGame->Say("/all ###______################");
+			GGame->Say("/all ###______################");
+			GGame->Say("/all ####______#####___________");
+			GGame->Say("/all ####______#####___________");
+			GGame->Say("/all ########################");
+			GGame->Say("/all ########################");
+			GGame->Say("/all ___________#####______#####");
+			GGame->Say("/all ___________#####______#####");
+			GGame->Say("/all #############______#####");
+			GGame->Say("/all #############______#####");
+		}
+	}
+}
+
+
 PLUGIN_EVENT(void) OnGameUpdate()
 {
 	keypress();
@@ -135,6 +159,7 @@ PLUGIN_EVENT(void) OnGameUpdate()
 	keypress3();
 	keypress4();
 	keypress5();
+	keypress6();
 }
 
 PLUGIN_API void OnLoad(IPluginSDK* PluginSDK)
